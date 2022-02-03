@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="weather.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Weather App</title>
+</head>
+
+<body class="body">
+    <div id="demo"></div>
+    <form class="search">
+        <input type="text" placeholder="search city" autofocus>
+        <button class="btn" type="submit">Search</button>
+        <p class="below"></p>
+
+    </form>
+    <div class="card">
+
+        <i class="fa fa-su fa-4x icon"></i>
+
+        <div class="wave one"></div>
+        <div class="wave two"></div>
+        <div class="wave three"></div>
+        <div class="info">
+            <div class="addr">
+                <p class="city">City</p>
+                <span class="country"></span>
+            </div>
+            <p class="desc"></p>
+            <div class="temp">
+                <p class="tempAvg">__</p>
+                <span class="deg"> C</span>
+            </div>
+            <!-- <p class="icon1"></p> -->
+        </div>
+    </div>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .body {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-family: sans-serif;
+            font-size: 1.5rem;
+            flex-direction: column;
+            height: 100vh;
+            /* background: linear-gradient(55deg, rgba(0, 0, 255, 0.438), rgba(0, 255, 255, 0.363)); */
+            background-image: linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%);
+            transition: all 0.3s linear;
+
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: rgba(34, 32, 32, 0);
+            background-blend-mode: soft-light;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #22202000;
+            background-blend-mode: soft-light;
+            /* filter: blur(); */
+        }
+
+        .sunny {
+            /* background: url('https://images.unsplash.com/photo-1504257373399-12c79acab9e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODR8fHN1bnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'); */
+            background-image: url('img/sun.jpg');
+
+            animation: view 0.6s linear forwards;
+
+        }
+
+
+        .cloudy {
+            /* background-image: url('https://images.unsplash.com/photo-1562494400-5b335a653209?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2t5JTIwY2xvdWRzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60'); */
+            background-image: url('img/cloud.jpg');
+
+            animation: view 0.6s linear forwards;
+        }
+
+        .rainy {
+            /* background-image: url('https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cmFpbiUyMGluJTIwbmlnaHR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60'); */
+            background-image: url('img/rain.jpg');
+            animation: view 0.6s linear forwards;
+        }
+
+        @keyframes view {
+            to {
+                background-color: rgba(0, 0, 0, 0.39);
+            }
+        }
+
+        .addr {
+            margin-top: 0;
+            display: flex;
+        }
+
+        .search {
+            margin-top: 10vh;
+        }
+
+        input,
+        button {
+            position: relative;
+            font-size: 14px;
+            padding: 2.5px 2px;
+            border-radius: 8px;
+            outline: none;
+            border: none;
+        }
+
+        button {
+            margin-left: 10px;
+            padding: 2.5px 8px;
+            transition: all 0.3s;
+            box-shadow: 2px 2px 4px silver;
+            transform-style: preserve-3d;
+            perspective: 10px;
+        }
+
+        button:active {
+            transition: none;
+            perspective: -10px;
+            transform-style: preserve-3d;
+
+            transform: scale(0.9);
+            background-color: rgba(121, 126, 126, 0.481);
+
+        }
+
+        .below {
+            margin: 6px 0 0 4px;
+            color: rgb(228, 174, 28);
+            font-weight: bolder;
+            font-size: 18px;
+            text-shadow: 2px 2px 3px black;
+        }
+
+        /* input:after{
+content: "";
+position: absolute;
+top: 0;
+width: 20vw;
+height: 30px;
+background-color: rgb(252, 0, 0);
+} */
+        .card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: column;
+            width: 300px;
+            /* filter: blur(3px); */
+            height: 70vh;
+            border: 1px solid black;
+            border-radius: 18px;
+            position: relative;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .fa {
+            margin-top: 20%;
+            animation: scale 1s linear infinite alternate;
+
+        }
+
+        .fa-sun {
+            color: rgb(255, 183, 0);
+            /* transition: transform 1s linear alternate; */
+        }
+
+        .fa-cloud {
+            color: silver;
+            filter: drop-shadow(4px 4px 8px black);
+        }
+
+        .fa-umbrella {
+            color: transparent;
+            filter: drop-shadow(7px 7px 4px rgb(248, 248, 248));
+
+        }
+
+        @keyframes scale {
+            to {
+                transform: scale(1.2);
+            }
+        }
+
+        .wave {
+            position: absolute;
+            inset: 50% auto;
+            width: 160%;
+            height: 100%;
+            z-index: 1;
+            border-radius: 44%;
+            background-color: rgba(112, 206, 224, 0.65);
+            animation: wavy 6s ease-in infinite;
+        }
+
+        .two {
+
+            z-index: 3;
+            background-color: rgba(144, 209, 209, 0.532);
+            transform: translatey(10px);
+            animation: wavy 7.5s linear infinite;
+            animation-delay: 0.3s;
+        }
+
+        .three {
+
+            z-index: 4;
+            background-color: rgba(9, 146, 146, 0.349);
+            transform: translateY(20px);
+            animation: wavy 5s linear infinite;
+            animation-delay: 0.3s;
+
+        }
+
+        @keyframes wavy {
+            from {
+                transform: rotate(0);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media(max-width:480px) {
+
+            input,
+            button {
+                padding: 6.5px 6px;
+            }
+
+            p {
+                font-size: 2.2rem;
+            }
+
+            .desc {
+                font-size: 1.05rem;
+            }
+
+            .card {
+                width: 99%;
+                height: 99%;
+                border: none;
+            }
+
+
+            .wave {
+                width: 160%;
+                height: 100%;
+                border-radius: 54%;
+                inset: 50% auto;
+            }
+        }
+
+        @media(max-height:480px) {
+            .wave {
+                width: 120%;
+                height: 130%;
+                border-radius: 50%;
+                inset: 55% auto;
+
+            }
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
+            text-shadow: 2px 2px 4px black;
+            /* border: 1px solid black; */
+            color: rgb(214, 212, 212);
+            /* font-size: larger; */
+            font-weight: bold;
+            width: 100%;
+            height: 50%;
+            z-index: 22;
+        }
+
+        .info>p {
+            margin-top: 7%;
+            transition: 1s;
+        }
+
+        .addr,
+        .temp {
+            display: flex;
+            margin-top: 7%;
+            align-items: center;
+            /* border: 1px solid black */
+        }
+
+        span {
+            font-size: 1.1rem;
+        }
+
+        .desc {
+            font-size: 1rem;
+
+        }
+    </style>
+
+
+    <script>
+        // 4e1e01ebf0c0b0501d1e2342a5d14429
+        // https://api.openweathermap.org/data/2.5/weather?q=poland&appid=4e1e01ebf0c0b0501d1e2342a5d14429
+        let select = (element => document.querySelector(element)) //made function coz querySelector became repetitive
+        let input = select('input')
+        let btn = select('.btn')
+        let city = select('.city')
+        let desc = select('.desc')
+        let temp = select('.tempAvg')
+        let icon = select('.icon')
+        let failure = select('.below')
+        let body = select('body')
+        let country = select('.country')
+        let date = new Date()
+
+
+        btn.addEventListener('click', getData)
+
+        async function getData(e) {
+            //without this line on submit keeps reloading page 
+            e.preventDefault()
+            if (input.value) {
+                let res = await fetch(
+                    `https://api.openweathermap.org/data/2.5/weather?q=${input.value}&appid=4e1e01ebf0c0b0501d1e2342a5d14429`
+
+                )
+                let data = await res.json()
+                console.log(data)
+                display(data)
+            }
+            //first i handled this empty input case with error code but that is not good coz it makes api call without benefit but this way i can save that call and display the same thing 'Type any city name'
+            else {
+                failure.textContent = 'Type any city name'
+            }
+        }
+
+        function display(data) {
+            if (data.cod == '200') {
+                city.textContent = `${data.name}, `
+                country.textContent = ` ${data.sys.country}`
+                desc.textContent = data.weather[0].description
+                temp.innerHTML = Math.round(data.main.temp - 273.15) + '&deg'
+                changingIcon(data.weather[0].description)
+                input.value = ''
+                failure.textContent = ''
+            } else {
+                failure.textContent = 'No city Found'
+            }
+        }
+
+        function changingIcon(data) {
+            if (data.includes('cloud')) {
+                // icon.setAttribute('class', 'fa fa-cloud fa-4x ')
+                body.classList.remove('sunny')
+                body.classList.remove('rainy')
+
+                document.body.classList.add('cloudy')
+
+            } else if (data.includes('rain')) {
+                icon.setAttribute('class', 'fa fa-umbrella fa-4x')
+                body.classList.remove('cloudy')
+                body.classList.remove('sunny')
+                body.classList.add('rainy')
+            } else {
+                // icon.setAttribute('class', 'fa fa-sun fa-4x ')
+                body.classList.remove('rainy')
+                body.classList.remove('cloudy')
+                body.classList.add('sunny')
+
+            }
+        }
+    </script>
+</body>
+
+</html>
