@@ -76,6 +76,7 @@
         .sunny {
             background: url('https://images.unsplash.com/photo-1504257373399-12c79acab9e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODR8fHN1bnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60');
             /* background-image: url('img/sun.jpg'); */
+            background-size: cover;
 
             animation: view 0.6s linear forwards;
 
@@ -366,7 +367,7 @@ background-color: rgb(252, 0, 0);
                 failure.textContent = 'No city Found'
             }
         }
-        let main = 'rain' || 'drizzle' || 'downpour'
+    
 
         function changingIcon(data) {
             if (data.includes('cloud')) {
@@ -375,8 +376,7 @@ background-color: rgb(252, 0, 0);
                 body.classList.remove('rainy')
                 document.body.classList.add('cloudy')
 
-            } else if (data.includes(main)) {
-                icon.setAttribute('class', 'fa fa-umbrella fa-4x')
+            } else if (data.includes( 'rain') || data.includes('drizzle') || data.includes('downpour')) {
                 body.classList.remove('cloudy')
                 body.classList.remove('sunny')
                 body.classList.add('rainy')
