@@ -365,7 +365,7 @@ background-color: rgb(252, 0, 0);
                 failure.textContent = 'No city Found'
             }
         }
-
+        let main = 'rain' || 'drizzle' || 'downpour'
         function changingIcon(data) {
             if (data.includes('cloud')) {
                 // icon.setAttribute('class', 'fa fa-cloud fa-4x ')
@@ -374,12 +374,15 @@ background-color: rgb(252, 0, 0);
 
                 document.body.classList.add('cloudy')
 
-            } else if (data.includes('rain') || data.includes('light')) {
-                icon.setAttribute('class', 'fa fa-umbrella fa-4x')
+            } else if (data.includes(main)) {
+                // icon.setAttribute('class', 'fa fa-umbrella fa-4x')
                 body.classList.remove('cloudy')
                 body.classList.remove('sunny')
                 body.classList.add('rainy')
-            } else {
+            } else if(data.includes(snow)){
+body.style.background='url("https://images.unsplash.com/photo-1431036101494-66a36de47def?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fHNub3d8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60")'
+            }
+                else {
                 // icon.setAttribute('class', 'fa fa-sun fa-4x ')
                 body.classList.remove('rainy')
                 body.classList.remove('cloudy')
