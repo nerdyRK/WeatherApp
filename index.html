@@ -318,7 +318,8 @@ background-color: rgb(252, 0, 0);
 
 
     <script>
-      
+        // 4e1e01ebf0c0b0501d1e2342a5d14429
+        // https://api.openweathermap.org/data/2.5/weather?q=poland&appid=4e1e01ebf0c0b0501d1e2342a5d14429
         let select = (element => document.querySelector(element)) //made function coz querySelector became repetitive
         let input = select('input')
         let btn = select('.btn')
@@ -365,26 +366,26 @@ background-color: rgb(252, 0, 0);
                 failure.textContent = 'No city Found'
             }
         }
-        let weatherDesc = 'rain' || 'drizzle' || 'downpour'
+        let main = 'rain' || 'drizzle' || 'downpour'
+
         function changingIcon(data) {
             if (data.includes('cloud')) {
                 // icon.setAttribute('class', 'fa fa-cloud fa-4x ')
                 body.classList.remove('sunny')
                 body.classList.remove('rainy')
-
                 document.body.classList.add('cloudy')
 
-            } else if (data.includes(weatherDesc)) {
-                // icon.setAttribute('class', 'fa fa-umbrella fa-4x')
+            } else if (data.includes(main)) {
+                icon.setAttribute('class', 'fa fa-umbrella fa-4x')
                 body.classList.remove('cloudy')
                 body.classList.remove('sunny')
                 body.classList.add('rainy')
-            } 
-                else {
+            } else {
                 // icon.setAttribute('class', 'fa fa-sun fa-4x ')
                 body.classList.remove('rainy')
                 body.classList.remove('cloudy')
                 body.classList.add('sunny')
+
             }
         }
     </script>
