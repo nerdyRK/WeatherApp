@@ -74,8 +74,8 @@
         }
 
         .sunny {
-            /* background: url('https://images.unsplash.com/photo-1504257373399-12c79acab9e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODR8fHN1bnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'); */
-            background-image: url('img/sun.jpg');
+            background: url('https://images.unsplash.com/photo-1504257373399-12c79acab9e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODR8fHN1bnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60');
+            /* background-image: url('img/sun.jpg'); */
 
             animation: view 0.6s linear forwards;
 
@@ -83,15 +83,15 @@
 
 
         .cloudy {
-            /* background-image: url('https://images.unsplash.com/photo-1562494400-5b335a653209?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2t5JTIwY2xvdWRzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60'); */
-            background-image: url('img/cloud.jpg');
+            background-image: url('https://images.unsplash.com/photo-1562494400-5b335a653209?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2t5JTIwY2xvdWRzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60');
+            /* background-image: url('img/cloud.jpg'); */
 
             animation: view 0.6s linear forwards;
         }
 
         .rainy {
-            /* background-image: url('https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cmFpbiUyMGluJTIwbmlnaHR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60'); */
-            background-image: url('img/rain.jpg');
+            background-image: url('https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cmFpbiUyMGluJTIwbmlnaHR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');
+            /* background-image: url('img/rain.jpg'); */
             animation: view 0.6s linear forwards;
         }
 
@@ -318,8 +318,7 @@ background-color: rgb(252, 0, 0);
 
 
     <script>
-        // 4e1e01ebf0c0b0501d1e2342a5d14429
-        // https://api.openweathermap.org/data/2.5/weather?q=poland&appid=4e1e01ebf0c0b0501d1e2342a5d14429
+      
         let select = (element => document.querySelector(element)) //made function coz querySelector became repetitive
         let input = select('input')
         let btn = select('.btn')
@@ -385,7 +384,6 @@ background-color: rgb(252, 0, 0);
                 body.classList.remove('rainy')
                 body.classList.remove('cloudy')
                 body.classList.add('sunny')
-
             }
         }
     </script>
