@@ -6,10 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="weather.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    
     <title>Weather App</title>
 </head>
 
@@ -22,8 +19,6 @@
 
     </form>
     <div class="card">
-
-        <i class="fa fa-su fa-4x icon"></i>
 
         <div class="wave one"></div>
         <div class="wave two"></div>
@@ -159,7 +154,7 @@ background-color: rgb(252, 0, 0);
         .card {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: end;
             flex-direction: column;
             width: 300px;
             /* filter: blur(3px); */
@@ -171,33 +166,7 @@ background-color: rgb(252, 0, 0);
             overflow: hidden;
         }
 
-        .fa {
-            margin-top: 20%;
-            animation: scale 1s linear infinite alternate;
 
-        }
-
-        .fa-sun {
-            color: rgb(255, 183, 0);
-            /* transition: transform 1s linear alternate; */
-        }
-
-        .fa-cloud {
-            color: silver;
-            filter: drop-shadow(4px 4px 8px black);
-        }
-
-        .fa-umbrella {
-            color: transparent;
-            filter: drop-shadow(7px 7px 4px rgb(248, 248, 248));
-
-        }
-
-        @keyframes scale {
-            to {
-                transform: scale(1.2);
-            }
-        }
 
         .wave {
             position: absolute;
@@ -327,7 +296,7 @@ background-color: rgb(252, 0, 0);
         let city = select('.city')
         let desc = select('.desc')
         let temp = select('.tempAvg')
-        let icon = select('.icon')
+        // let icon = select('.icon')
         let failure = select('.below')
         let body = select('body')
         let country = select('.country')
@@ -342,7 +311,6 @@ background-color: rgb(252, 0, 0);
             if (input.value) {
                 let res = await fetch(
                     `https://api.openweathermap.org/data/2.5/weather?q=${input.value}&appid=4e1e01ebf0c0b0501d1e2342a5d14429`
-
                 )
                 let data = await res.json()
                 console.log(data)
@@ -376,7 +344,7 @@ background-color: rgb(252, 0, 0);
                 body.classList.remove('rainy')
                 document.body.classList.add('cloudy')
 
-            } else if (data.includes('rain') || data.includes('drizzle') || data.includes('downpour')) {
+            } else if (["rain","drizzle","downpour"].some(des => data.includes(des))) {
                 body.classList.remove('cloudy')
                 body.classList.remove('sunny')
                 body.classList.add('rainy')
