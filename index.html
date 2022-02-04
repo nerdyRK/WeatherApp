@@ -365,7 +365,7 @@ background-color: rgb(252, 0, 0);
                 failure.textContent = 'No city Found'
             }
         }
-        let main = 'rain' || 'drizzle' || 'downpour'
+        let weatherDesc = 'rain' || 'drizzle' || 'downpour'
         function changingIcon(data) {
             if (data.includes('cloud')) {
                 // icon.setAttribute('class', 'fa fa-cloud fa-4x ')
@@ -374,7 +374,7 @@ background-color: rgb(252, 0, 0);
 
                 document.body.classList.add('cloudy')
 
-            } else if (data.includes(main)) {
+            } else if (data.includes(weatherDesc)) {
                 // icon.setAttribute('class', 'fa fa-umbrella fa-4x')
                 body.classList.remove('cloudy')
                 body.classList.remove('sunny')
