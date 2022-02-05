@@ -310,7 +310,7 @@ background-color: rgb(252, 0, 0);
             e.preventDefault()
             if (input.value) {
                 let res = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?q=${input.value}&appid=4e1e01ebf0c0b0501d1e2342a5d14429`
+                    `https://api.openweathermap.org/data/2.5/weather?q=${(input.value).trim()}&appid=4e1e01ebf0c0b0501d1e2342a5d14429`
                 )
                 let data = await res.json()
                 console.log(data)
