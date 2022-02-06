@@ -313,8 +313,16 @@ background-color: rgb(252, 0, 0);
         let body = select('body')
         let country = select('.country')
         let time = select('.time')
-        let date = new Date().toLocaleString()
-        time.innerHTML = date
+
+        let clock = setInterval(t, 1000)
+
+        function t() {
+            let dat = new Date()
+            let curr = dat.toLocaleString()
+            time.innerHTML = curr
+
+        }
+
 
 
         btn.addEventListener('click', getData)
