@@ -6,18 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="weather.css"> -->
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
     <title>Weather App</title>
 </head>
 
 <body class="body">
-    <div id="demo"></div>
+
     <form class="search">
         <input type="text" placeholder="search city" autofocus>
         <button class="btn" type="submit">Search</button>
         <p class="below"></p>
 
     </form>
+    <div class="time"></div>
     <div class="card">
 
         <div class="wave one"></div>
@@ -112,6 +116,7 @@
             font-size: 14px;
             padding: 2.5px 2px;
             border-radius: 8px;
+            box-shadow: 2px 2px 3px 3px rgba(107, 101, 101, 0.644);
             outline: none;
             border: none;
         }
@@ -120,7 +125,7 @@
             margin-left: 10px;
             padding: 2.5px 8px;
             transition: all 0.3s;
-            box-shadow: 2px 2px 4px silver;
+            box-shadow: 2px 2px 3px 3px rgba(107, 101, 101, 0.616);
             transform-style: preserve-3d;
             perspective: 10px;
         }
@@ -143,6 +148,13 @@
             text-shadow: 2px 2px 3px black;
         }
 
+        .time {
+            margin-top: 10vh;
+            font-family: 'Pacifico', cursive;
+            color: azure;
+            text-shadow: 2px 2px 3px black;
+        }
+
         /* input:after{
 content: "";
 position: absolute;
@@ -154,7 +166,7 @@ background-color: rgb(252, 0, 0);
         .card {
             display: flex;
             align-items: center;
-            justify-content: end;
+            justify-content: flex-end;
             flex-direction: column;
             width: 300px;
             /* filter: blur(3px); */
@@ -300,7 +312,9 @@ background-color: rgb(252, 0, 0);
         let failure = select('.below')
         let body = select('body')
         let country = select('.country')
-        let date = new Date()
+        let time = select('.time')
+        let date = new Date().toLocaleString()
+        time.innerHTML = date
 
 
         btn.addEventListener('click', getData)
@@ -335,16 +349,16 @@ background-color: rgb(252, 0, 0);
                 failure.textContent = 'No city Found'
             }
         }
-    
+
 
         function changingIcon(data) {
-            if (["snow","mist","cloud"].some(des => data.includes(des))) {
+            if (["snow", "mist", "cloud"].some(des => data.includes(des))) {
                 // icon.setAttribute('class', 'fa fa-cloud fa-4x ')
                 body.classList.remove('sunny')
                 body.classList.remove('rainy')
                 document.body.classList.add('cloudy')
 
-            } else if (["rain","drizzle","downpour"].some(des => data.includes(des))) {
+            } else if (["rain", "drizzle", "downpour"].some(des => data.includes(des))) {
                 body.classList.remove('cloudy')
                 body.classList.remove('sunny')
                 body.classList.add('rainy')
