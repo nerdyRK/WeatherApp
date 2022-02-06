@@ -150,7 +150,7 @@
 
         .time {
             margin-top: 7vh;
-            font-size: large;
+            font-size: 1.5rem;
             font-family: 'Pacifico', cursive;
             color: azure;
             text-shadow: 2px 2px 3px black;
@@ -309,19 +309,16 @@ background-color: rgb(252, 0, 0);
         let city = select('.city')
         let desc = select('.desc')
         let temp = select('.tempAvg')
-        // let icon = select('.icon')
         let failure = select('.below')
         let body = select('body')
         let country = select('.country')
         let time = select('.time')
-
         let clock = setInterval(t, 1000)
 
         function t() {
             let dat = new Date()
-            let curr = dat.toLocaleTimeString()
+            let curr = dat.toLocaleString()
             time.innerHTML = curr
-
         }
 
 
