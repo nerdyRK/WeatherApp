@@ -39,5 +39,5 @@ app.get('/weather/:city', async (req,res)=> {
      res.send(resp.data)
     })
 
-
-app.listen(5000,()=>console.log('listening....'))
+const port=process.env.port||5000
+app.listen(port,()=>console.log('listening....'))
