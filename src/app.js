@@ -21,12 +21,12 @@ console.log(process.env)
 //**serve static files with express.static*/
 //**in public folder it serve index.html
 
-// const spath=path.join(__dirname,'public')
+const spath=path.join(__dirname,'public')
 // console.log(spath)
 
 // when we do this static then if the requested page is not mentioned like '/' it will look in public folder for file 
 // it is also useful because we won't make route for every file
-app.use(express.static('public',{extensions:['html']}))
+app.use(express.static(spath,{extensions:['html']}))
 app.use(express.json({limit:'1mb'}))
 
 app.get('',(req,res)=>res.send('welcome'))
