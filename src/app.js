@@ -29,6 +29,7 @@ console.log(process.env)
 app.use(express.static('public',{extensions:['html']}))
 app.use(express.json({limit:'1mb'}))
 
+app.get('',(req,res)=>res.send('welcome'))
 app.get('/weather/:city', async (req,res)=> {
     // console.log(req.params)
   const city=req.params.city
