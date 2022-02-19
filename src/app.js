@@ -21,7 +21,7 @@ console.log(process.env)
 //**serve static files with express.static*/
 //**in public folder it serve index.html
 
-const spath=path.join(__dirname,'public')
+const spath=path.join(__dirname,'docs')
 // console.log(spath)
 
 // when we do this static then if the requested page is not mentioned like '/' it will look in public folder for file 
